@@ -1,0 +1,32 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-type: PKCS12
+    key-store-password: changeit
+    key-alias: backendauth
+    enabled-protocols:
+      - TLSv1.2
+      - TLSv1.3
+    protocol: TLS
+
+spring:
+  application:
+    name: backend-auth-tls
+
+  # Pretty-print JSON responses
+  jackson:
+    serialization:
+      indent-output: true
+
+# JWT configuration
+jwt:
+  secret: 7a3f9b2c8e5d1a4f6b0e2c9d8a7f3e1b4d6c0a9e8f2b5d7c1a4e6f9b2d5c8a1
+  expiration-ms: 3600000   # 1 hour in milliseconds
+
+# Logging
+logging:
+  level:
+    com.utch.backendauth: DEBUG
+    org.springframework.security: INFO
